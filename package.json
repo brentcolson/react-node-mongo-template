@@ -1,0 +1,17 @@
+{
+  "name": "bi-react",
+  "version": "1.0.0",
+  "description": "jot down your business ideas",
+  "main": "index.js",
+  "scripts": {
+    "test": "test"
+  },
+  "author": "brent colson",
+  "license": "ISC",
+  "dependencies"{
+    
+  }
+
+}
+
+
