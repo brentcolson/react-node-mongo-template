@@ -2,12 +2,20 @@
   "name": "bi-react",
   "version": "1.0.0",
   "description": "jot down your business ideas",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/brentcolson/business-ideas.git"
+  },
   "main": "index.js",
   "scripts": {
     "test": "test"
   },
   "author": "brent colson",
   "license": "ISC",
-},
-
-
+  "dependencies": {
+    "body-parser": "^1.15.1",
+    "express": "^4.13.4",
+    "morgan": "^1.7.0",
+    "path": "^0.12.7"
+  }
+}
