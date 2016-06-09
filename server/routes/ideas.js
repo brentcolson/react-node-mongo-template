@@ -38,11 +38,23 @@ router.put('/:id', function(req, res){
   var idea = req.body;
   Idea.findByIdAndUpdate(id, idea)
     .then(function(){
-      res.end();
+      res.status(204).send("Idea updated successfully");
     })
     .catch(function(err){
       console.log(err);
-      res.status(404).send(';databaseError');
+      res.status(404).send('DatabaseError');
+    });
+});
+
+router.delete('/:id', function(req, res){
+  var id = req.params.id;
+  Idea.remove({_id: id})
+    .then(function(){
+      res.status(204).send('Idea deleted successfully');
+    })
+    .catch(function(err){
+      console.log(err);
+      res.status(404).send("DatabaseError");
     });
 });
 
