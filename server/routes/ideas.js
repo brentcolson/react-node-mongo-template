@@ -33,5 +33,18 @@ router.post('/', function(req, res){
     });
 });
 
+router.put('/:id', function(req, res){
+  var id = req.params.id;
+  var idea = req.body;
+  Idea.findByIdAndUpdate(id, idea)
+    .then(function(){
+      res.end();
+    })
+    .catch(function(err){
+      console.log(err);
+      res.status(404).send(';databaseError');
+    });
+});
+
 
 module.exports = router;
