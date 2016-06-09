@@ -24,4 +24,4 @@ var IdeaSchema = new Schema({
   timestamps: true
 });
 
-module.exports = mongoose.model('ideas', IdeaSchema);
+module.exports = mongoose.model('idea', IdeaSchema);

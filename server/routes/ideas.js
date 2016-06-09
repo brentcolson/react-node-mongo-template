@@ -1,9 +1,9 @@
 var express = require('express');
 var router = express.Router();
-var Ideas = require('../../db/ideas/ideas.js');
+var Idea = require('../../db/idea/idea.js');
 
-router.get('/ideas', function(req, res){
-  Ideas.find({})
+router.get('/', function(req, res){
+  Idea.find({})
     .then(function(docs){
     res.send(docs);
     })
@@ -13,6 +13,25 @@ router.get('/ideas', function(req, res){
     });
 });
 
+router.post('/', function(req, res){
+  var idea = req.body;
+  var NewIdea = new Idea({
+    taskTitle: idea.taskTitle,
+    description: idea.description,
+    dueDate: idea.dueDate,
+    tag: idea.tag,
+    isCompleted: idea.isCompleted
+  });
+
+  NewIdea.save()
+    .then(function(idea){
+    res.send(idea);
+    })
+    .catch(function(err){
+      console.log(err);
+      res.status(404).send('DatabaseError');
+    });
+});
 
 
 module.exports = router;
