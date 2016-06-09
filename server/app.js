@@ -15,6 +15,6 @@ app.use(bodyParser.urlencoded({extended: true}));
 //Serves up your public/client folder
 
 //Router
-app.use('/api', ideas);
+app.use('/api/ideas', ideas);
 
 module.exports = app;
