@@ -9,7 +9,7 @@ var app = express();
 //Server logger
 app.use(morgan('dev'));
 
-app.use('/', express.static(path.resolve(__dirname, '../client')));
+app.use('/', express.static(path.resolve(__dirname, '../public')));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));
 //Serves up your public/client folder
