@@ -1,13 +1,1 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-  <meta charset="UTF-8">
-  <title>Business Ideas</title>
-</head>
-
-<body>
-Hello World
-</body>
-
-</html>
+ReactDOM.render(React.createElement(App, { tasks : window.tempData }),document.getElementById('app'));

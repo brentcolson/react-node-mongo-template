@@ -8,7 +8,7 @@
   },
   "main": "index.js",
   "scripts": {
-    "test": "test"
+    "start":"babel . --out-dir compiled --presets=es2015,react --ignore=node_modules,compiled,db,server --source-maps inline --watch"
   },
   "author": "brent colson",
   "license": "ISC",
