@@ -1,4 +1,4 @@
-window.tempData = [
+const tempData = [
   {
     taskTitle: "my task",
     description: "my task description",
@@ -14,3 +14,5 @@ window.tempData = [
     isCompleted: true,
   }
 ];
+
+export default tempData;

@@ -1,4 +1,5 @@
 import React from 'react';
+import List from './List.jsx';
 
 export default class App extends React.Component {
   constructor(props){
@@ -9,7 +10,7 @@ export default class App extends React.Component {
       const { tasks } = this.props;
       return (
         <div>
-          <List tasks={ tasks }/>
+          <List tasks={ tasks } />
         </div>
       )
     }
