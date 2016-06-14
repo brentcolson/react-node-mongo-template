@@ -1,7 +1,6 @@
 import React from 'react';
 import List from '../components/List.jsx';
 import { getListings } from '../api/helpers.js';
-import tempData from '../data/tempData.js';
 import axios from 'axios';
 
 
