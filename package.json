@@ -1,10 +1,10 @@
 {
   "name": "bi-react",
   "version": "1.0.0",
-  "description": "jot down your business ideas",
+  "description": "a basic react template with express server and mongo/mongoose db",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/brentcolson/business-ideas.git"
+    "url": "git+https://github.com/brentcolson/react-node-mongo-template.git"
   },
   "main": "index.js",
   "scripts": {

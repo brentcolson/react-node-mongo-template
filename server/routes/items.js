@@ -2,6 +2,7 @@ var express = require('express');
 var router = express.Router();
 var Item = require('../../db/item/item.js');
 
+//Returns all items in db
 router.get('/', function(req, res){
   Item.find({})
     .then(function(docs){
@@ -13,6 +14,8 @@ router.get('/', function(req, res){
     });
 });
 
+//Adds new item to db
+//Returns new item
 router.post('/', function(req, res){
   var item = req.body;
   var NewItem = new Item({
@@ -33,6 +36,7 @@ router.post('/', function(req, res){
     });
 });
 
+//Updates an item in the db
 router.put('/:id', function(req, res){
   var id = req.params.id;
   var item = req.body;
@@ -46,6 +50,7 @@ router.put('/:id', function(req, res){
     });
 });
 
+//Deletes an item in the db
 router.delete('/:id', function(req, res){
   var id = req.params.id;
   Item.remove({_id: id})
