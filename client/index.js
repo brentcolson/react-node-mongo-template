@@ -1,14 +1,30 @@
 import React from 'react';
 import { render } from 'react-dom';
-import App from './components/App.jsx';
-import tempData from './data/tempData';
-import getListings from './lib/helpers.js';
+import ReactDOM from 'react-dom';
+import { Router, Route, browserHistory } from 'react-router';
 
-getListings("http://localhost:8000/api/ideas", 
-  function(res){
-    render( 
-      React.createElement(App, { tasks: res.data }),
-      document.getElementById('app')
-    );
-  }
-);
+// Layouts
+import App from './layouts/App.jsx';
+
+// Components
+import ListContainer from './containers/ListContainer.jsx';
+
+import tempData from './data/tempData';
+import { getListings } from './lib/helpers.js';
+
+ReactDOM.render((
+
+    <Router history={ browserHistory}>
+
+      <Route component={ App }>
+
+        <Route path="/" component={ ListContainer } />
+
+      </Route>
+
+    </Router>
+
+), document.getElementById('app'));
+
+
+

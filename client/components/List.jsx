@@ -1,7 +1,6 @@
 import React from 'react';
 import LineItem from './LineItem.jsx';
 
-
 const List = (props) => {
   return (
     <div>
