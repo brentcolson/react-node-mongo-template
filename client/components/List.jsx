@@ -6,8 +6,8 @@ const List = (props) => {
     <div>
       <strong>My Task Titles</strong>
       { 
-        props.tasks.map(function(task, key){
-          return <LineItem key={ key } task={ task } />;
+        props.items.map(function(item, key){
+          return <LineItem key={ key } item={ item } />;
         })
       }
     </div>

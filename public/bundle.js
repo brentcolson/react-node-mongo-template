@@ -52,8 +52,6 @@
 
 	var _reactDom = __webpack_require__(38);
 
-	var _reactDom2 = _interopRequireDefault(_reactDom);
-
 	var _reactRouter = __webpack_require__(168);
 
 	var _App = __webpack_require__(229);
@@ -64,18 +62,12 @@
 
 	var _ListContainer2 = _interopRequireDefault(_ListContainer);
 
-	var _tempData = __webpack_require__(231);
-
-	var _tempData2 = _interopRequireDefault(_tempData);
-
-	var _helpers = __webpack_require__(232);
-
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	// Layouts
 
 
-	_reactDom2.default.render(_react2.default.createElement(
+	(0, _reactDom.render)(_react2.default.createElement(
 	  _reactRouter.Router,
 	  { history: _reactRouter.browserHistory },
 	  _react2.default.createElement(
@@ -85,7 +77,7 @@
 	  )
 	), document.getElementById('app'));
 
-	// Components
+	// Containers
 
 /***/ },
 /* 1 */
@@ -25948,6 +25940,10 @@
 
 	var _tempData2 = _interopRequireDefault(_tempData);
 
+	var _axios = __webpack_require__(233);
+
+	var _axios2 = _interopRequireDefault(_axios);
+
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -25971,11 +25967,15 @@
 	  }
 
 	  _createClass(ListContainer, [{
-	    key: 'componentWillMount',
-	    value: function componentWillMount() {
+	    key: 'componentDidMount',
+	    value: function componentDidMount() {
 	      var _this = this;
-	      _this.setState({
-	        listItems: _tempData2.default
+	      (0, _helpers.getListings)().then(function (res) {
+	        _this.setState({
+	          listItems: res.data
+	        });
+	      }).catch(function (err) {
+	        console.log(err);
 	      });
 	    }
 	  }, {
@@ -25984,7 +25984,7 @@
 	      return _react2.default.createElement(
 	        'div',
 	        null,
-	        _react2.default.createElement(_List2.default, { tasks: this.state.listItems })
+	        _react2.default.createElement(_List2.default, { items: this.state.listItems })
 	      );
 	    }
 	  }]);
@@ -26020,32 +26020,7 @@
 	exports.default = tempData;
 
 /***/ },
-/* 232 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-
-	var _axios = __webpack_require__(233);
-
-	var _axios2 = _interopRequireDefault(_axios);
-
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-	var getListings = function getListings(url, callback) {
-	  return _axios2.default.get(url).then(function (res) {
-	    return callback(res);
-	  }).catch(function (err) {
-	    console.log(err);
-	  });
-	};
-
-	exports.default = getListings;
-
-/***/ },
+/* 232 */,
 /* 233 */
 /***/ function(module, exports, __webpack_require__) {
 
@@ -27286,8 +27261,8 @@
 	      null,
 	      'My Task Titles'
 	    ),
-	    props.tasks.map(function (task, key) {
-	      return _react2.default.createElement(_LineItem2.default, { key: key, task: task });
+	    props.items.map(function (item, key) {
+	      return _react2.default.createElement(_LineItem2.default, { key: key, item: item });
 	    })
 	  );
 	};
@@ -27314,7 +27289,7 @@
 	  return _react2.default.createElement(
 	    'div',
 	    null,
-	    props.task.taskTitle
+	    props.item.taskTitle
 	  );
 	};
 
@@ -27329,6 +27304,7 @@
 	Object.defineProperty(exports, "__esModule", {
 	  value: true
 	});
+	exports.getListings = getListings;
 
 	var _axios = __webpack_require__(233);
 
@@ -27336,11 +27312,9 @@
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-	var getListings = function getListings() {
+	function getListings() {
 	  return _axios2.default.get('http://localhost:8000/api/ideas');
-	};
-
-	exports.default = getListings;
+	}
 
 /***/ }
 /******/ ]);

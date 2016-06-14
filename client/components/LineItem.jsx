@@ -3,7 +3,7 @@ import React from 'react';
 const LineItem = (props) => {
   return ( 
     <div>
-      {props.task.taskTitle}
+      {props.item.taskTitle}
     </div>
   );
 };
