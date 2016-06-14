@@ -2,7 +2,7 @@ var express = require('express');
 var morgan = require('morgan');
 var bodyParser = require('body-parser');
 var path = require('path');
-var ideas = require('./routes/ideas.js');
+var items = require('./routes/items.js');
 
 var app = express();
 
@@ -15,6 +15,6 @@ app.use(bodyParser.urlencoded({extended: true}));
 //Serves up your public/client folder
 
 //Router
-app.use('/api/ideas', ideas);
+app.use('/api/items', items);
 
 module.exports = app;

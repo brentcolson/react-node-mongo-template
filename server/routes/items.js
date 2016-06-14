@@ -1,9 +1,9 @@
 var express = require('express');
 var router = express.Router();
-var Idea = require('../../db/idea/idea.js');
+var Item = require('../../db/item/item.js');
 
 router.get('/', function(req, res){
-  Idea.find({})
+  Item.find({})
     .then(function(docs){
     res.send(docs);
     })
@@ -14,18 +14,18 @@ router.get('/', function(req, res){
 });
 
 router.post('/', function(req, res){
-  var idea = req.body;
-  var NewIdea = new Idea({
-    taskTitle: idea.taskTitle,
-    description: idea.description,
-    dueDate: idea.dueDate,
-    tag: idea.tag,
-    isCompleted: idea.isCompleted
+  var item = req.body;
+  var NewItem = new Item({
+    itemTitle: item.itemTitle,
+    itemDescription: item.itemDescription,
+    dueDate: item.dueDate,
+    tag: item.tag,
+    isCompleted: item.isCompleted
   });
 
-  NewIdea.save()
-    .then(function(idea){
-    res.send(idea);
+  NewItem.save()
+    .then(function(item){
+    res.send(item);
     })
     .catch(function(err){
       console.log(err);
@@ -35,10 +35,10 @@ router.post('/', function(req, res){
 
 router.put('/:id', function(req, res){
   var id = req.params.id;
-  var idea = req.body;
-  Idea.findByIdAndUpdate(id, idea)
+  var item = req.body;
+  Item.findByIdAndUpdate(id, item)
     .then(function(){
-      res.status(204).send("Idea updated successfully");
+      res.status(204).send("Item updated successfully");
     })
     .catch(function(err){
       console.log(err);
@@ -48,9 +48,9 @@ router.put('/:id', function(req, res){
 
 router.delete('/:id', function(req, res){
   var id = req.params.id;
-  Idea.remove({_id: id})
+  Item.remove({_id: id})
     .then(function(){
-      res.status(204).send('Idea deleted successfully');
+      res.status(204).send('Item deleted successfully');
     })
     .catch(function(err){
       console.log(err);

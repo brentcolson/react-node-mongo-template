@@ -27289,7 +27289,7 @@
 	  return _react2.default.createElement(
 	    'div',
 	    null,
-	    props.item.taskTitle
+	    props.item.itemTitle
 	  );
 	};
 
@@ -27313,7 +27313,7 @@
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	function getListings() {
-	  return _axios2.default.get('http://localhost:8000/api/ideas');
+	  return _axios2.default.get('http://localhost:8000/api/items');
 	}
 
 /***/ }

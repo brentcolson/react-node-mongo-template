@@ -2,12 +2,12 @@ var mongoose = require('../db.js');
 
 var Schema = mongoose.Schema;
 
-var IdeaSchema = new Schema({
-  taskTitle: {
+var ItemSchema = new Schema({
+  itemTitle: {
     type: String,
     required: true
   },
-  description: {
+  itemDescription: {
     type: String,
     required: true
   },
@@ -24,4 +24,4 @@ var IdeaSchema = new Schema({
   timestamps: true
 });
 
-module.exports = mongoose.model('idea', IdeaSchema);
+module.exports = mongoose.model('item', ItemSchema);
