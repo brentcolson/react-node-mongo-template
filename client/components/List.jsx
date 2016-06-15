@@ -11,11 +11,11 @@ const List = (props) => {
         })
       }
       <div>
-        <input type="text" name="itemTitle" placeholder="Item title" />
+        <input type="text" name="itemTitle" placeholder="Item title" onChange={props.handleNewTitle} />
         <br />
-        <input type="text" name="itemDescription" placeholder="Item description" />
+        <textarea type="text" name="itemDescription" placeholder="Item description" onChange={props.handleNewDescription} />
         <br />
-        <button onClick={ props.updateOnAddItem }>Add Item</button>
+        <button type="submit" value="Post" onClick={ props.handleSubmit }>Add Item</button>
       </div> 
     </div>
   );

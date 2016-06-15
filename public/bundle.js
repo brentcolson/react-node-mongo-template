@@ -25957,7 +25957,9 @@
 	    var _this2 = _possibleConstructorReturn(this, Object.getPrototypeOf(ListContainer).call(this, props));
 
 	    _this2.state = {
-	      listItems: []
+	      listItems: [],
+	      newItemTitle: '',
+	      newItemDescription: ''
 	    };
 	    return _this2;
 	  }
@@ -25975,15 +25977,36 @@
 	      });
 	    }
 	  }, {
-	    key: 'updateOnAddItem',
-	    value: function updateOnAddItem(event) {
+	    key: 'handleNewTitle',
+	    value: function handleNewTitle(e) {
+	      this.setState({ newItemTitle: e.target.value });
+	    }
+	  }, {
+	    key: 'handleNewDescription',
+	    value: function handleNewDescription(e) {
+	      this.setState({ newItemDescription: e.target.value });
+	    }
+	  }, {
+	    key: 'handleSubmit',
+	    value: function handleSubmit(e) {
+	      e.preventDefault();
 	      var _this = this;
-	      (0, _helpers.getItems)('items').then(function (res) {
-	        _this.setState({
-	          listItems: res.data
+
+	      var item = {
+	        itemTitle: _this.state.newItemTitle.trim(),
+	        itemDescription: _this.state.newItemDescription.trim()
+	      };
+	      if (!item.itemTitle || !item.itemDescription) {
+	        return;
+	      }
+	      (0, _helpers.addItem)('items', item).then(function () {
+	        (0, _helpers.getItems)('items').then(function (res) {
+	          _this.setState({
+	            listItems: res.data
+	          });
+	        }).catch(function (err) {
+	          console.log(err);
 	        });
-	      }).catch(function (err) {
-	        console.log(err);
 	      });
 	    }
 	  }, {
@@ -25992,7 +26015,7 @@
 	      return _react2.default.createElement(
 	        'div',
 	        null,
-	        _react2.default.createElement(_List2.default, { items: this.state.listItems, updateOnAddItem: this.updateOnAddItem.bind(this) })
+	        _react2.default.createElement(_List2.default, { items: this.state.listItems, handleNewTitle: this.handleNewTitle.bind(this), handleNewDescription: this.handleNewDescription.bind(this), handleSubmit: this.handleSubmit.bind(this) })
 	      );
 	    }
 	  }]);
@@ -26037,13 +26060,13 @@
 	    _react2.default.createElement(
 	      'div',
 	      null,
-	      _react2.default.createElement('input', { type: 'text', name: 'itemTitle', placeholder: 'Item title' }),
+	      _react2.default.createElement('input', { type: 'text', name: 'itemTitle', placeholder: 'Item title', onChange: props.handleNewTitle }),
 	      _react2.default.createElement('br', null),
-	      _react2.default.createElement('input', { type: 'text', name: 'itemDescription', placeholder: 'Item description' }),
+	      _react2.default.createElement('textarea', { type: 'text', name: 'itemDescription', placeholder: 'Item description', onChange: props.handleNewDescription }),
 	      _react2.default.createElement('br', null),
 	      _react2.default.createElement(
 	        'button',
-	        { onClick: props.updateOnAddItem },
+	        { type: 'submit', value: 'Post', onClick: props.handleSubmit },
 	        'Add Item'
 	      )
 	    )
@@ -26102,7 +26125,7 @@
 
 	//expect 'item' to be an object with all properties required by item model
 	function addItem(endPoint, item) {
-	  return _axios2.default.post(window.location.href + 'api/' + endPoint);
+	  return _axios2.default.post(window.location.href + 'api/' + endPoint, item);
 	}
 
 /***/ },
