@@ -26043,6 +26043,10 @@
 
 	var _LineItem2 = _interopRequireDefault(_LineItem);
 
+	var _AddNewItemForm = __webpack_require__(253);
+
+	var _AddNewItemForm2 = _interopRequireDefault(_AddNewItemForm);
+
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	var List = function List(props) {
@@ -26057,19 +26061,7 @@
 	    props.items.map(function (item, key) {
 	      return _react2.default.createElement(_LineItem2.default, { key: key, item: item });
 	    }),
-	    _react2.default.createElement(
-	      'div',
-	      null,
-	      _react2.default.createElement('input', { type: 'text', name: 'itemTitle', placeholder: 'Item title', onChange: props.handleNewTitle }),
-	      _react2.default.createElement('br', null),
-	      _react2.default.createElement('textarea', { type: 'text', name: 'itemDescription', placeholder: 'Item description', onChange: props.handleNewDescription }),
-	      _react2.default.createElement('br', null),
-	      _react2.default.createElement(
-	        'button',
-	        { type: 'submit', value: 'Post', onClick: props.handleSubmit },
-	        'Add Item'
-	      )
-	    )
+	    _react2.default.createElement(_AddNewItemForm2.default, { handleNewTitle: props.handleNewTitle, handleNewDescription: props.handleNewDescription, handleSubmit: props.handleSubmit })
 	  );
 	};
 
@@ -27339,6 +27331,40 @@
 	  };
 	};
 
+
+/***/ },
+/* 253 */
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+
+	var _react = __webpack_require__(1);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	var AddForm = function AddForm(props) {
+	  return _react2.default.createElement(
+	    "div",
+	    null,
+	    _react2.default.createElement("input", { type: "text", name: "itemTitle", placeholder: "Item title", onChange: props.handleNewTitle }),
+	    _react2.default.createElement("br", null),
+	    _react2.default.createElement("textarea", { type: "text", name: "itemDescription", placeholder: "Item description", onChange: props.handleNewDescription }),
+	    _react2.default.createElement("br", null),
+	    _react2.default.createElement(
+	      "button",
+	      { type: "submit", value: "Post", onClick: props.handleSubmit },
+	      "Add Item"
+	    )
+	  );
+	};
+
+	exports.default = AddForm;
 
 /***/ }
 /******/ ]);

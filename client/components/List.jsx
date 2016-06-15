@@ -1,5 +1,6 @@
 import React from 'react';
 import LineItem from './LineItem.jsx';
+import AddForm from './AddNewItemForm.jsx';
 
 const List = (props) => {
   return (
@@ -10,13 +11,7 @@ const List = (props) => {
           return <LineItem key={ key } item={ item } />;
         })
       }
-      <div>
-        <input type="text" name="itemTitle" placeholder="Item title" onChange={props.handleNewTitle} />
-        <br />
-        <textarea type="text" name="itemDescription" placeholder="Item description" onChange={props.handleNewDescription} />
-        <br />
-        <button type="submit" value="Post" onClick={ props.handleSubmit }>Add Item</button>
-      </div> 
+      <AddForm handleNewTitle={ props.handleNewTitle } handleNewDescription={ props.handleNewDescription } handleSubmit={ props.handleSubmit } />
     </div>
   );
 };
