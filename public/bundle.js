@@ -25934,9 +25934,9 @@
 
 	var _List2 = _interopRequireDefault(_List);
 
-	var _helpers = __webpack_require__(233);
+	var _helpers = __webpack_require__(234);
 
-	var _axios = __webpack_require__(234);
+	var _axios = __webpack_require__(235);
 
 	var _axios2 = _interopRequireDefault(_axios);
 
@@ -26043,7 +26043,7 @@
 
 	var _LineItem2 = _interopRequireDefault(_LineItem);
 
-	var _AddNewItemForm = __webpack_require__(253);
+	var _AddNewItemForm = __webpack_require__(233);
 
 	var _AddNewItemForm2 = _interopRequireDefault(_AddNewItemForm);
 
@@ -26056,7 +26056,7 @@
 	    _react2.default.createElement(
 	      'strong',
 	      null,
-	      'My Task Titles'
+	      'My Tasks'
 	    ),
 	    props.items.map(function (item, key) {
 	      return _react2.default.createElement(_LineItem2.default, { key: key, item: item });
@@ -26087,7 +26087,9 @@
 	  return _react2.default.createElement(
 	    'div',
 	    null,
-	    props.item.itemTitle
+	    props.item.itemTitle,
+	    ' - ',
+	    props.item.itemDescription
 	  );
 	};
 
@@ -26095,6 +26097,40 @@
 
 /***/ },
 /* 233 */
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+
+	var _react = __webpack_require__(1);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	var AddForm = function AddForm(props) {
+	  return _react2.default.createElement(
+	    "form",
+	    { onSubmit: props.handleSubmit },
+	    _react2.default.createElement("input", { type: "text", name: "itemTitle", placeholder: "Item title", onChange: props.handleNewTitle }),
+	    _react2.default.createElement("br", null),
+	    _react2.default.createElement("textarea", { type: "text", name: "itemDescription", placeholder: "Item description", onChange: props.handleNewDescription }),
+	    _react2.default.createElement("br", null),
+	    _react2.default.createElement(
+	      "button",
+	      { type: "submit", value: "Post" },
+	      "Add Item"
+	    )
+	  );
+	};
+
+	exports.default = AddForm;
+
+/***/ },
+/* 234 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -26105,7 +26141,7 @@
 	exports.getItems = getItems;
 	exports.addItem = addItem;
 
-	var _axios = __webpack_require__(234);
+	var _axios = __webpack_require__(235);
 
 	var _axios2 = _interopRequireDefault(_axios);
 
@@ -26121,25 +26157,25 @@
 	}
 
 /***/ },
-/* 234 */
+/* 235 */
 /***/ function(module, exports, __webpack_require__) {
 
-	module.exports = __webpack_require__(235);
+	module.exports = __webpack_require__(236);
 
 /***/ },
-/* 235 */
+/* 236 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 
-	var defaults = __webpack_require__(236);
-	var utils = __webpack_require__(237);
-	var dispatchRequest = __webpack_require__(239);
-	var InterceptorManager = __webpack_require__(248);
-	var isAbsoluteURL = __webpack_require__(249);
-	var combineURLs = __webpack_require__(250);
-	var bind = __webpack_require__(251);
-	var transformData = __webpack_require__(243);
+	var defaults = __webpack_require__(237);
+	var utils = __webpack_require__(238);
+	var dispatchRequest = __webpack_require__(240);
+	var InterceptorManager = __webpack_require__(249);
+	var isAbsoluteURL = __webpack_require__(250);
+	var combineURLs = __webpack_require__(251);
+	var bind = __webpack_require__(252);
+	var transformData = __webpack_require__(244);
 
 	function Axios(defaultConfig) {
 	  this.defaults = utils.merge({}, defaultConfig);
@@ -26228,7 +26264,7 @@
 	axios.all = function all(promises) {
 	  return Promise.all(promises);
 	};
-	axios.spread = __webpack_require__(252);
+	axios.spread = __webpack_require__(253);
 
 	// Provide aliases for supported request methods
 	utils.forEach(['delete', 'get', 'head'], function forEachMethodNoData(method) {
@@ -26256,13 +26292,13 @@
 
 
 /***/ },
-/* 236 */
+/* 237 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 
-	var utils = __webpack_require__(237);
-	var normalizeHeaderName = __webpack_require__(238);
+	var utils = __webpack_require__(238);
+	var normalizeHeaderName = __webpack_require__(239);
 
 	var PROTECTION_PREFIX = /^\)\]\}',?\n/;
 	var DEFAULT_CONTENT_TYPE = {
@@ -26334,7 +26370,7 @@
 
 
 /***/ },
-/* 237 */
+/* 238 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -26617,12 +26653,12 @@
 
 
 /***/ },
-/* 238 */
+/* 239 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 
-	var utils = __webpack_require__(237);
+	var utils = __webpack_require__(238);
 
 	module.exports = function normalizeHeaderName(headers, normalizedName) {
 	  utils.forEach(headers, function processHeader(value, name) {
@@ -26635,7 +26671,7 @@
 
 
 /***/ },
-/* 239 */
+/* 240 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(process) {'use strict';
@@ -26657,10 +26693,10 @@
 	        adapter = config.adapter;
 	      } else if (typeof XMLHttpRequest !== 'undefined') {
 	        // For browsers use XHR adapter
-	        adapter = __webpack_require__(240);
+	        adapter = __webpack_require__(241);
 	      } else if (typeof process !== 'undefined') {
 	        // For node use HTTP adapter
-	        adapter = __webpack_require__(240);
+	        adapter = __webpack_require__(241);
 	      }
 
 	      if (typeof adapter === 'function') {
@@ -26676,18 +26712,18 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(3)))
 
 /***/ },
-/* 240 */
+/* 241 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(process) {'use strict';
 
-	var utils = __webpack_require__(237);
-	var buildURL = __webpack_require__(241);
-	var parseHeaders = __webpack_require__(242);
-	var transformData = __webpack_require__(243);
-	var isURLSameOrigin = __webpack_require__(244);
-	var btoa = (typeof window !== 'undefined' && window.btoa) || __webpack_require__(245);
-	var settle = __webpack_require__(246);
+	var utils = __webpack_require__(238);
+	var buildURL = __webpack_require__(242);
+	var parseHeaders = __webpack_require__(243);
+	var transformData = __webpack_require__(244);
+	var isURLSameOrigin = __webpack_require__(245);
+	var btoa = (typeof window !== 'undefined' && window.btoa) || __webpack_require__(246);
+	var settle = __webpack_require__(247);
 
 	module.exports = function xhrAdapter(resolve, reject, config) {
 	  var requestData = config.data;
@@ -26784,7 +26820,7 @@
 	  // This is only done if running in a standard browser environment.
 	  // Specifically not if we're in a web worker, or react-native.
 	  if (utils.isStandardBrowserEnv()) {
-	    var cookies = __webpack_require__(247);
+	    var cookies = __webpack_require__(248);
 
 	    // Add xsrf header
 	    var xsrfValue = config.withCredentials || isURLSameOrigin(config.url) ?
@@ -26845,12 +26881,12 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(3)))
 
 /***/ },
-/* 241 */
+/* 242 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 
-	var utils = __webpack_require__(237);
+	var utils = __webpack_require__(238);
 
 	function encode(val) {
 	  return encodeURIComponent(val).
@@ -26919,12 +26955,12 @@
 
 
 /***/ },
-/* 242 */
+/* 243 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 
-	var utils = __webpack_require__(237);
+	var utils = __webpack_require__(238);
 
 	/**
 	 * Parse headers into an object
@@ -26962,12 +26998,12 @@
 
 
 /***/ },
-/* 243 */
+/* 244 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 
-	var utils = __webpack_require__(237);
+	var utils = __webpack_require__(238);
 
 	/**
 	 * Transform the data for a request or a response
@@ -26988,12 +27024,12 @@
 
 
 /***/ },
-/* 244 */
+/* 245 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 
-	var utils = __webpack_require__(237);
+	var utils = __webpack_require__(238);
 
 	module.exports = (
 	  utils.isStandardBrowserEnv() ?
@@ -27062,7 +27098,7 @@
 
 
 /***/ },
-/* 245 */
+/* 246 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -27104,7 +27140,7 @@
 
 
 /***/ },
-/* 246 */
+/* 247 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -27128,12 +27164,12 @@
 
 
 /***/ },
-/* 247 */
+/* 248 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 
-	var utils = __webpack_require__(237);
+	var utils = __webpack_require__(238);
 
 	module.exports = (
 	  utils.isStandardBrowserEnv() ?
@@ -27187,12 +27223,12 @@
 
 
 /***/ },
-/* 248 */
+/* 249 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 
-	var utils = __webpack_require__(237);
+	var utils = __webpack_require__(238);
 
 	function InterceptorManager() {
 	  this.handlers = [];
@@ -27245,7 +27281,7 @@
 
 
 /***/ },
-/* 249 */
+/* 250 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -27265,7 +27301,7 @@
 
 
 /***/ },
-/* 250 */
+/* 251 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -27283,7 +27319,7 @@
 
 
 /***/ },
-/* 251 */
+/* 252 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -27300,7 +27336,7 @@
 
 
 /***/ },
-/* 252 */
+/* 253 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -27331,40 +27367,6 @@
 	  };
 	};
 
-
-/***/ },
-/* 253 */
-/***/ function(module, exports, __webpack_require__) {
-
-	"use strict";
-
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-
-	var _react = __webpack_require__(1);
-
-	var _react2 = _interopRequireDefault(_react);
-
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-	var AddForm = function AddForm(props) {
-	  return _react2.default.createElement(
-	    "div",
-	    null,
-	    _react2.default.createElement("input", { type: "text", name: "itemTitle", placeholder: "Item title", onChange: props.handleNewTitle }),
-	    _react2.default.createElement("br", null),
-	    _react2.default.createElement("textarea", { type: "text", name: "itemDescription", placeholder: "Item description", onChange: props.handleNewDescription }),
-	    _react2.default.createElement("br", null),
-	    _react2.default.createElement(
-	      "button",
-	      { type: "submit", value: "Post", onClick: props.handleSubmit },
-	      "Add Item"
-	    )
-	  );
-	};
-
-	exports.default = AddForm;
 
 /***/ }
 /******/ ]);

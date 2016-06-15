@@ -5,7 +5,7 @@ import AddForm from './AddNewItemForm.jsx';
 const List = (props) => {
   return (
     <div>
-      <strong>My Task Titles</strong>
+      <strong>My Tasks</strong>
       { 
         props.items.map(function(item, key){
           return <LineItem key={ key } item={ item } />;
