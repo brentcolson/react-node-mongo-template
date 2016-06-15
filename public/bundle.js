@@ -25966,7 +25966,19 @@
 	    key: 'componentDidMount',
 	    value: function componentDidMount() {
 	      var _this = this;
-	      (0, _helpers.getListings)().then(function (res) {
+	      (0, _helpers.getItems)('items').then(function (res) {
+	        _this.setState({
+	          listItems: res.data
+	        });
+	      }).catch(function (err) {
+	        console.log(err);
+	      });
+	    }
+	  }, {
+	    key: 'updateOnAddItem',
+	    value: function updateOnAddItem(event) {
+	      var _this = this;
+	      (0, _helpers.getItems)('items').then(function (res) {
 	        _this.setState({
 	          listItems: res.data
 	        });
@@ -25980,7 +25992,7 @@
 	      return _react2.default.createElement(
 	        'div',
 	        null,
-	        _react2.default.createElement(_List2.default, { items: this.state.listItems })
+	        _react2.default.createElement(_List2.default, { items: this.state.listItems, updateOnAddItem: this.updateOnAddItem.bind(this) })
 	      );
 	    }
 	  }]);
@@ -26021,7 +26033,20 @@
 	    ),
 	    props.items.map(function (item, key) {
 	      return _react2.default.createElement(_LineItem2.default, { key: key, item: item });
-	    })
+	    }),
+	    _react2.default.createElement(
+	      'div',
+	      null,
+	      _react2.default.createElement('input', { type: 'text', name: 'itemTitle', placeholder: 'Item title' }),
+	      _react2.default.createElement('br', null),
+	      _react2.default.createElement('input', { type: 'text', name: 'itemDescription', placeholder: 'Item description' }),
+	      _react2.default.createElement('br', null),
+	      _react2.default.createElement(
+	        'button',
+	        { onClick: props.updateOnAddItem },
+	        'Add Item'
+	      )
+	    )
 	  );
 	};
 
@@ -26062,7 +26087,8 @@
 	Object.defineProperty(exports, "__esModule", {
 	  value: true
 	});
-	exports.getListings = getListings;
+	exports.getItems = getItems;
+	exports.addItem = addItem;
 
 	var _axios = __webpack_require__(234);
 
@@ -26070,8 +26096,13 @@
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-	function getListings() {
-	  return _axios2.default.get('http://localhost:8000/api/items');
+	function getItems(endPoint) {
+	  return _axios2.default.get(window.location.href + 'api/' + endPoint);
+	}
+
+	//expect 'item' to be an object with all properties required by item model
+	function addItem(endPoint, item) {
+	  return _axios2.default.post(window.location.href + 'api/' + endPoint);
 	}
 
 /***/ },
