@@ -1,6 +1,6 @@
 var express = require('express');
 var router = express.Router();
-var Item = require('../../db/item/item.js');
+var Item = require('../db/item/item.js');
 
 //Returns all items in db
 router.get('/', function(req, res){
